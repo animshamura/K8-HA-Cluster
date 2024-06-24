@@ -1,5 +1,5 @@
 ## Highly Available Kubernetes Cluster Architecture: ##
-<p style="color:blue">The below architecture refers a highly available Kubernetes cluster which doesn't fall in one point failure for loadbalancing.</p>
+The below architecture refers a highly available Kubernetes cluster which doesn't fall in one point failure for loadbalancing.
 <br/>
 <img src="https://github.com/animshamura/Highly-Available-Kubernetes-Cluster/blob/main/screenshots/ha-kube-cluster.drawio.png?raw=true">
 
@@ -206,19 +206,19 @@ curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --
 kubeadm init --control-plane-endpoint="172.17.17.116:6443" --upload-certs --apiserver-advertise-address=172.17.17.110 --pod-network-cidr=192.168.1.0/16
 ```
 **Step 2: Join master and worker nodes.** <br/>
-***Executing print-join-command for getting the joining token.***
+Executing print-join-command for getting the joining token.
 ```
 kubeadm token create --print-join-command
 ```
-***For joining master node 2 in the multicluster.***
+For joining master node 2 in the multicluster.
 ```
 kubeadm join 172.17.17.110:6443 --token 5g5jo2.agl26wfzkujgjt3s --discovery-token-ca-cert-hash ha256:57795a664200425258ed0619af960fe476d1ae93f99182a3d710ce1185468d3f --apiserver-advertise-address=172.17.17.111
 ```
-***For joining master node 3 in the multicluster.***
+For joining master node 3 in the multicluster.
 ```
 kubeadm join 172.17.17.110:6443 --token 5g5jo2.agl26wfzkujgjt3s --discovery-token-ca-cert-hash ha256:57795a664200425258ed0619af960fe476d1ae93f99182a3d710ce1185468d3f --apiserver-advertise-address=172.17.17.112
 ```
-***For joining worker node 1 in the multicluster.***
+For joining worker node 1 in the multicluster.
 ```
 kubeadm join 172.17.17.110:6443 --token 5g5jo2.agl26wfzkujgjt3s --discovery-token-ca-cert-hash ha256:57795a664200425258ed0619af960fe476d1ae93f99182a3d710ce1185468d3f --apiserver-advertise-address=172.17.17.113
 ```
