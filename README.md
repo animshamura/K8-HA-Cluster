@@ -110,3 +110,34 @@ vrrp_instance VI_1 {
 }
 EOF
 ```
+**Step 3: Enable and start Keepalived service.**
+```
+systemctl enable --now keepalived
+systemctl start --now keepalived
+```
+**Step 4: Configure HAProxy.**
+```
+cat >> /etc/haproxy/haproxy.cfg <<EOF
+
+frontend kubernetes-frontend
+  bind *:6443
+  mode tcp
+  option tcplog
+  default_backend kubernetes-backend
+
+backend kubernetes-backend
+  option httpchk GET /healthz
+  http-check expect status 200
+  mode tcp
+  option ssl-hello-chk
+  balance roundrobin
+    server master1 172.17.17.110:6443 check fall 3 rise 2
+    server master2 172.17.17.111:6443 check fall 3 rise 2
+    server master3 172.17.17.112:6443 check fall 3 rise 2
+
+EOF
+```
+**Step 5: Enable and restart HAProxy service.**
+```
+systemctl enable haproxy && systemctl restart haproxy
+```
