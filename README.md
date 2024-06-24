@@ -9,7 +9,7 @@
 ## Section: ##
 - VM Creation
 - HAProxy and Keepalived Installation in Loadbalancer VMs
-- Setuo Multi Cluster 
+- Setup Multi Cluster 
 
 ## VM Creation: ##
 
@@ -79,5 +79,4 @@ fi
 EOF
 
 chmod +x /etc/keepalived/check_apiserver.sh
-
 ```
