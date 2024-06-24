@@ -76,7 +76,8 @@ network:
 |Worker Node 1 |worker1| 172.17.17.113|
 |Loadbalancer 1 |loadbalancer1| 172.17.17.114|
 |Loadbalancer 2 |loadbalancer2| 172.17.17.115|
-|Virtual IP | - | 172.17.17.116|
+
+|Virtual IP | 172.17.17.116|
 
 ## HAProxy and Keepalived Installation in Loadbalancer VMs: ##
 
