@@ -1,7 +1,7 @@
 # Highly-Available-Kubernetes-Cluster
 ## Requirements: ##
-- Minimum 3 master nodes
-- Minimum 2 loadbalancers
+- Minimum 3 Master Nodes
+- Minimum 2 Loadbalancers
 - HAProxy
 - Keepalived
 
