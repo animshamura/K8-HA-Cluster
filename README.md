@@ -5,7 +5,7 @@
 - HAProxy
 - Keepalived
 
-## VM Creation: ##
+## Section 1: VM Creation ##
 
 #### Step 1: Create 6 VMs in Proxmox. ####
 
@@ -47,4 +47,4 @@ network:
   version: 2
 
 ```
-## HAProxy and Keepalives Installation in Loadbalancer VMs: ##
+## Section 2: HAProxy and Keepalives Installation in Loadbalancer VMs ##
