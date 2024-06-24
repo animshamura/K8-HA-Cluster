@@ -68,6 +68,16 @@ network:
         via: 172.17.17.1
   version: 2
 ```
+| Node | IP Address | 
+|------|------------|
+|Master Node 1 | 172.17.17.110|
+|Master Node 2 | 172.17.17.111|
+|Master Node 3 | 172.17.17.112|
+|Worker Node 1 | 172.17.17.113|
+|Loadbalancer 1 | 172.17.17.114|
+|Loadbalancer 2 | 172.17.17.115|
+|Virtual IP | 172.17.17.116|
+
 ## HAProxy and Keepalived Installation in Loadbalancer VMs: ##
 
 **Step 1: Install HAProxy and Keepalived.**
