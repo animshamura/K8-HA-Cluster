@@ -31,7 +31,6 @@ sudo hostnamectl set-hostname master1
 
 ```
 sudo vim /etc/netplan/00-installer-config.yaml
-
 ```
 ***Edit "00-installer-config.yaml" file according to the desired IP.***
 
@@ -50,7 +49,6 @@ network:
       - to: default
         via: 172.17.17.1
   version: 2
-
 ```
 ## HAProxy and Keepalived Installation in Loadbalancer VMs: ##
 
