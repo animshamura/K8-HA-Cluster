@@ -27,7 +27,7 @@ sudo hostnamectl set-hostname master1
 sudo vim /etc/netplan/00-installer-config.yaml
 
 ```
-Edit "00-installer-config.yaml" file according to the desired IP.
+***Edit "00-installer-config.yaml" file according to the desired IP.***
 
 ```
 # This is the network config written by 'subiquity'
