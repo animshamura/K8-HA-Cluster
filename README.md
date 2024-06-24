@@ -273,5 +273,5 @@ This will show the virtual IP 172.17.17.116 is attached to Loadbalancer 1.
 ```
 ip a s
 ```
-Now, this will show the virtual IP 172.17.17.116 is attached to Loadbalancer 1. <br/>
+Now, this will show the virtual IP 172.17.17.116 is attached to Loadbalancer 2. <br/>
 
