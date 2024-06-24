@@ -1,5 +1,5 @@
 ## Highly Available Kubernetes Cluster Architecture: ##
-***The below architecture refers a highly available Kubernetes cluster who doesn't fall in one point failure for loadbalancing.***
+***The below architecture refers a highly available Kubernetes cluster which doesn't fall in one point failure for loadbalancing.***
 <br/>
 <img src="https://github.com/animshamura/Highly-Available-Kubernetes-Cluster/blob/main/screenshots/ha-kube-cluster.drawio.png?raw=true">
 
