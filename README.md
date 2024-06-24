@@ -70,12 +70,12 @@ network:
 ```
 | VM | Host Name| IP Address | 
 |------|--------|------------|
-|Master Node 1 |master1| 172.17.17.110|
-|Master Node 2 |master2| 172.17.17.111|
-|Master Node 3 |master3| 172.17.17.112|
-|Worker Node 1 |worker1| 172.17.17.113|
-|Loadbalancer 1 |loadbalancer1| 172.17.17.114|
-|Loadbalancer 2 |loadbalancer2| 172.17.17.115|
+|Master Node-1 |master1| 172.17.17.110|
+|Master Node-2 |master2| 172.17.17.111|
+|Master Node-3 |master3| 172.17.17.112|
+|Worker Node-1 |worker1| 172.17.17.113|
+|Loadbalancer-1 |loadbalancer1| 172.17.17.114|
+|Loadbalancer-2 |loadbalancer2| 172.17.17.115|
 
 | Name | IP Address|
 |------|-----------|
@@ -238,15 +238,15 @@ Executing print-join-command for getting the joining token.
 ```
 kubeadm token create --print-join-command
 ```
-For joining master node 2 in the multicluster.
+For joining master-node-2 in the multicluster.
 ```
 kubeadm join 172.17.17.110:6443 --token 5g5jo2.agl26wfzkujgjt3s --discovery-token-ca-cert-hash ha256:57795a664200425258ed0619af960fe476d1ae93f99182a3d710ce1185468d3f --apiserver-advertise-address=172.17.17.111
 ```
-For joining master node 3 in the multicluster.
+For joining master-node-3 in the multicluster.
 ```
 kubeadm join 172.17.17.110:6443 --token 5g5jo2.agl26wfzkujgjt3s --discovery-token-ca-cert-hash ha256:57795a664200425258ed0619af960fe476d1ae93f99182a3d710ce1185468d3f --apiserver-advertise-address=172.17.17.112
 ```
-For joining worker node 1 in the multicluster.
+For joining worker-node-1 in the multicluster.
 ```
 kubeadm join 172.17.17.110:6443 --token 5g5jo2.agl26wfzkujgjt3s --discovery-token-ca-cert-hash ha256:57795a664200425258ed0619af960fe476d1ae93f99182a3d710ce1185468d3f 
 ```
@@ -263,15 +263,15 @@ scp anim@172.17.18.200:/home/anim/.kube/config .
 ```
 watch kubectl get nodes
 ```
-**Step 3: Execute below command in Loadbalancer 1.**
+**Step 3: Execute below command in Loadbalancer-1.**
 ```
 ip a s
 ```
-This will show the virtual IP 172.17.17.116 is attached to Loadbalancer 1.
+This will show the virtual IP 172.17.17.116 is attached to Loadbalancer-1.
 
-**Step 3: Turn off the Loadbalancer 1 and execute below command in Loadbalancer 2.**
+**Step 3: Turn off the Loadbalancer-1 and execute below command in Loadbalancer-2.**
 ```
 ip a s
 ```
-Now, this will show the virtual IP 172.17.17.116 is attached to Loadbalancer 2. <br/>
+Now, this will show the virtual IP 172.17.17.116 is attached to Loadbalancer-2. <br/>
 
