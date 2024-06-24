@@ -19,12 +19,13 @@
 sudo hostnamectl set-hostname master1
 
 ```
-#### Step 2: Change ip addres of the VMs in Proxmox. ####
+#### Step 3: Change IP addres of the VMs in Proxmox. ####
 
 ```
 sudo vim /etc/netplan/00-installer-config.yaml
 
 ```
+Edit 00-installer-config.yaml according to the desired IP.
 ```
 # This is the network config written by 'subiquity'
 network:
