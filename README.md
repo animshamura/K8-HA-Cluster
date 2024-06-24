@@ -220,7 +220,7 @@ kubeadm join 172.17.17.110:6443 --token 5g5jo2.agl26wfzkujgjt3s --discovery-toke
 ```
 For joining worker node 1 in the multicluster.
 ```
-kubeadm join 172.17.17.110:6443 --token 5g5jo2.agl26wfzkujgjt3s --discovery-token-ca-cert-hash ha256:57795a664200425258ed0619af960fe476d1ae93f99182a3d710ce1185468d3f --apiserver-advertise-address=172.17.17.113
+kubeadm join 172.17.17.110:6443 --token 5g5jo2.agl26wfzkujgjt3s --discovery-token-ca-cert-hash ha256:57795a664200425258ed0619af960fe476d1ae93f99182a3d710ce1185468d3f 
 ```
 **Step 3: Deploy Calico network.**
 ```
