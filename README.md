@@ -139,3 +139,61 @@ EOF
 ```
 systemctl enable haproxy && systemctl restart haproxy
 ```
+## Cluster prerequisites: ##
+**Step 1: Disable swap.**
+```
+swapoff -a; sed -i '/swap/d' /etc/fstab
+```
+**Step 2: Disable firewall.**
+```
+systemctl disable --now ufw
+```
+**Step 3: Enable and Load Kernel modules.**
+```
+{
+cat >> /etc/modules-load.d/containerd.conf <<EOF
+overlay
+br_netfilter
+EOF
+
+modprobe overlay
+modprobe br_netfilter
+}
+```
+**Step 4: Add Kernel settings.**
+```
+{
+cat >>/etc/sysctl.d/kubernetes.conf<<EOF
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables  = 1
+net.ipv4.ip_forward                 = 1
+EOF
+
+sysctl --system
+}
+```
+**Step 5: Install containerd runtime.**
+```
+{
+  apt update
+  apt install -y containerd apt-transport-https
+  mkdir /etc/containerd
+  containerd config default > /etc/containerd/config.toml
+  systemctl restart containerd
+  systemctl enable containerd
+}
+```
+**Step 6: Add apt repo for Kubernetes.**
+```
+{
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+}
+```
+**Step 7: Install Kubernetes components.**
+```
+{
+  apt update
+  apt install -y kubeadm kubelet kubectl
+}
+```
