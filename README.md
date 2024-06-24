@@ -52,7 +52,7 @@ network:
   version: 2
 
 ```
-## HAProxy and Keepalives Installation in Loadbalancer VMs: ##
+## HAProxy and Keepalived Installation in Loadbalancer VMs: ##
 
 **Step 1: Install HAProxy and Keepalived.**
 
