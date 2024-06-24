@@ -4,8 +4,12 @@
 - Minimum 2 Loadbalancers
 - HAProxy
 - Keepalived
+## Section: ##
+- VM Creation
+- HAProxy and Keepalived Installation in Loadbalancer VMs
+- Setuo Multi Cluster 
 
-## Section 1: VM Creation ##
+## VM Creation: ##
 
 #### Step 1: Create 6 VMs in Proxmox. ####
 
@@ -47,4 +51,4 @@ network:
   version: 2
 
 ```
-## Section 2: HAProxy and Keepalives Installation in Loadbalancer VMs ##
+## HAProxy and Keepalives Installation in Loadbalancer VMs: ##
