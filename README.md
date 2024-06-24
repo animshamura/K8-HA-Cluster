@@ -68,7 +68,7 @@ network:
         via: 172.17.17.1
   version: 2
 ```
-| Node | IP Address | 
+| VM | IP Address | 
 |------|------------|
 |Master Node 1 | 172.17.17.110|
 |Master Node 2 | 172.17.17.111|
