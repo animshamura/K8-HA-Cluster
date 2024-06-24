@@ -1,5 +1,6 @@
 ## Highly Available Kubernetes Cluster Architecture: ##
 ***The below architecture refers a highly available Kubernetes cluster who doesn't fall in one point failure for loadbalancing having 3 master nodes, 2 loadbalancers and a worker node.***
+<br/>
 <img src="https://github.com/animshamura/Highly-Available-Kubernetes-Cluster/blob/main/screenshots/ha-kube-cluster.drawio.png?raw=true">
 
 ## Requirements: ##
