@@ -78,3 +78,35 @@ EOF
 
 chmod +x /etc/keepalived/check_apiserver.sh
 ```
+***Create keepalived config /etc/keepalived/keepalived.conf.***
+
+```
+cat >> /etc/keepalived/keepalived.conf <<EOF
+vrrp_script check_apiserver {
+  script "/etc/keepalived/check_apiserver.sh"
+  interval 3
+  timeout 10
+  fall 5
+  rise 2
+  weight -2
+}
+
+vrrp_instance VI_1 {
+    state BACKUP
+    interface ens18
+    virtual_router_id 1
+    priority 100
+    advert_int 5
+    authentication {
+        auth_type PASS
+        auth_pass mysecret
+    }
+    virtual_ipaddress {
+        172.17.17.116
+    }
+    track_script {
+        check_apiserver
+    }
+}
+EOF
+```
