@@ -1,16 +1,16 @@
 ## Why high availability is mandatory for Kubernetes clusters? ##
-<div align="justify">A highly available Kubernetes cluster is essential for modern cloud-native applications due to its ability to ensure reliability, scalability, and resilience. By distributing workload across multiple nodes, these clusters eliminate single points of failure, minimizing downtime and disruptions. Redundancy in cluster components enables continuous operation even if individual nodes or components fail. This fault tolerance not only improves uptime but also enhances the overall reliability of applications hosted within the cluster. <br/><br/>
+<div align="justify">A highly available Kubernetes cluster is essential for modern cloud-native applications due to its ability to ensure reliability, scalability, and resilience. By distributing workload across multiple nodes, these clusters eliminate single points of failure, minimizing downtime and disruptions. Redundancy in cluster components enables continuous operation even if individual nodes or components fail. This fault tolerance not only improves uptime but also enhances the overall reliability of applications hosted within the cluster. <br/><
 
 Scalability is another critical benefit of highly available Kubernetes clusters. They can dynamically scale resources up or down based on workload demands, ensuring optimal performance without manual intervention. Load balancing mechanisms distribute incoming traffic across multiple nodes and pods, enhancing performance and resource utilization. This elasticity allows organizations to efficiently handle varying levels of traffic and adapt to changing business needs. <br/>
 
 Operational efficiency is also significantly improved in highly available Kubernetes environments. Automated failover mechanisms and rolling updates allow for seamless maintenance and updates without affecting service availability. Security and compliance requirements are met through isolation and redundancy, ensuring data integrity and protecting against potential breaches. Ultimately, highly available Kubernetes clusters not only support business continuity and disaster recovery but also enable organizations to meet stringent service level agreements (SLAs) by providing robust and reliable infrastructure for their applications.</div>
 ## Highly Available Kubernetes Cluster Architecture: ##
 <div align="justify">A Highly Available Kubernetes cluster architecture is designed with redundancy and fault tolerance in mind, ensuring continuous operation and scalability for containerized applications. The architecture centers around a distributed control plane comprising redundant instances of the API server, etcd, controller manager, and scheduler. These components manage cluster state, resource allocation, and workload distribution across multiple nodes. <br/>
-<br/>
+
 Etcd serves as a distributed key-value store for storing critical cluster data, configured in a fault-tolerant manner with an odd-numbered quorum of nodes. Controller managers oversee various aspects of cluster management, ensuring resilience by running multiple instances across different control plane nodes. The scheduler optimizes resource allocation by placing pods on worker nodes based on resource requirements and policies, enhancing efficiency and performance.<br/>
-<br/>
+
 Worker nodes execute containers and communicate with the control plane components via APIs. Load balancers are used to distribute incoming traffic across worker nodes and services, further improving availability and scalability. The architecture supports elasticity, allowing nodes and components to scale dynamically based on workload demands, while automated failover mechanisms ensure resilience against node failures or disruptions.
-<br/><br/>
+<br/>
 Overall, a Highly Available Kubernetes cluster architecture provides a robust foundation for deploying and managing cloud-native applications, meeting high availability requirements and enabling organizations to maintain operational efficiency and meet stringent SLAs.</div>
 
 <br/>
