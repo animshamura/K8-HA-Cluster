@@ -205,7 +205,7 @@ curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --
 ```
 kubeadm init --control-plane-endpoint="172.17.17.116:6443" --upload-certs --apiserver-advertise-address=172.17.17.110 --pod-network-cidr=192.168.1.0/16
 ```
-**Step 2: Join master and worker nodes.**
+**Step 2: Join master and worker nodes.** <br/>
 ***Executing print-join-command for getting the joining token.***
 ```
 kubeadm token create --print-join-command
