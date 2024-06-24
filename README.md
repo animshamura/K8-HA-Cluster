@@ -1,4 +1,4 @@
-# Highly-Available-Kubernetes-Cluster
+## Highly Available Kubernetes Cluster Architecture: ##
 <img src="https://github.com/animshamura/Highly-Available-Kubernetes-Cluster/blob/main/screenshots/ha-kube-cluster.drawio.png?raw=true">
 
 ## Requirements: ##
