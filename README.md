@@ -255,6 +255,7 @@ watch kubectl get nodes
 ip a s
 ```
 This will show the virtual IP 172.17.17.111 is attached to Loadbalancer 1. <br/>
+
 **Step 3: Turn off the Loadbalancer 1 and execute below command in Loadbalancer 2.**
 ```
 ip a s
