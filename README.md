@@ -27,6 +27,7 @@ The above architecture refers a highly available Kubernetes cluster which doesn'
 - HAProxy and Keepalived Installation in Loadbalancer VMs
 - Cluster Pre-requisites
 - Bootstrapping Clusters
+- Check High Availability
 
 ## VM Creation: ##
 
