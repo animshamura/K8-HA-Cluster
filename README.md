@@ -26,7 +26,6 @@
 
 ```
 sudo hostnamectl set-hostname master1
-
 ```
 #### Step 3: Change IP addres of the VMs in Proxmox. ####
 
@@ -59,7 +58,6 @@ network:
 
 ```
 apt update && apt install -y keepalived haproxy
-
 ```
 **Step 2: Configure Keepalived.**
 
