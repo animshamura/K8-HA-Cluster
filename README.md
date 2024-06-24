@@ -5,6 +5,8 @@
 - HAProxy
 - Keepalived
 
+## VM Creation : ##
+
 #### Step 1: Create 6 VMs in Proxmox. ####
 
 <img src="https://github.com/animshamura/Highly-Available-Kubernetes-Cluster/blob/main/screenshots/pr1.png?raw=true">
