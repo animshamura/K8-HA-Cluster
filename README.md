@@ -241,4 +241,23 @@ kubeadm join 172.17.17.110:6443 --token 5g5jo2.agl26wfzkujgjt3s --discovery-toke
 ```
 kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://docs.projectcalico.org/v3.18/manifests/calico.yaml
 ```
+## Check High Availability: ##
+**Step 1: Copy kubeconfig file to the host machine.**
+```
+scp anim@172.17.18.200:/home/anim/.kube/config .
+```
+**Step 2: Watch nodes.**
+```
+watch kubectl get nodes
+```
+**Step 3: Execute below command in Loadbalancer 1.**
+```
+ip a s
+```
+This will show the virtual IP 172.17.17.111 is attached to Loadbalancer 1. <br/>
+**Step 3: Turn off the Loadbalancer 1 and execute below command in Loadbalancer 2.**
+```
+ip a s
+```
+Now, this will show the virtual IP 172.17.17.111 is attached to Loadbalancer 1. <br/>
 
