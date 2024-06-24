@@ -5,7 +5,7 @@
 - HAProxy
 - Keepalived
 
-## VM Creation : ##
+## VM Creation: ##
 
 #### Step 1: Create 6 VMs in Proxmox. ####
 
