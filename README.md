@@ -9,7 +9,8 @@
 ## Section: ##
 - VM Creation
 - HAProxy and Keepalived Installation in Loadbalancer VMs
-- Setup Multi Cluster 
+- Cluster Pre-requisites
+- Bootstrapping Clusters
 
 ## VM Creation: ##
 
@@ -139,7 +140,7 @@ EOF
 ```
 systemctl enable haproxy && systemctl restart haproxy
 ```
-## Cluster prerequisites: ##
+## Cluster Pre-requisites: ##
 **Step 1: Disable swap.**
 ```
 swapoff -a; sed -i '/swap/d' /etc/fstab
@@ -183,7 +184,7 @@ sysctl --system
   systemctl enable containerd
 }
 ```
-**Step 6: Add apt repo for Kubernetes.**
+**Step 6: Add apt repository for Kubernetes.**
 ```
 {
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
@@ -197,3 +198,30 @@ curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --
   apt install -y kubeadm kubelet kubectl
 }
 ```
+## Bootstrapping Clusters: ##
+**Step 1: Initialize Kubernetes cluster.**
+```
+kubeadm init --control-plane-endpoint="172.17.17.116:6443" --upload-certs --apiserver-advertise-address=172.17.17.110 --pod-network-cidr=192.168.1.0/16
+```
+**Step 2: Join master and worker nodes.**
+***Executing print-join-command for getting the joining token.***
+```
+kubeadm token create --print-join-command
+```
+***For joining master node 2 in the multicluster.***
+```
+kubeadm join 172.17.17.110:6443 --token 5g5jo2.agl26wfzkujgjt3s --discovery-token-ca-cert-hash ha256:57795a664200425258ed0619af960fe476d1ae93f99182a3d710ce1185468d3f --apiserver-advertise-address=172.17.17.111
+```
+***For joining master node 3 in the multicluster.***
+```
+kubeadm join 172.17.17.110:6443 --token 5g5jo2.agl26wfzkujgjt3s --discovery-token-ca-cert-hash ha256:57795a664200425258ed0619af960fe476d1ae93f99182a3d710ce1185468d3f --apiserver-advertise-address=172.17.17.112
+```
+***For joining worker node 1 in the multicluster.***
+```
+kubeadm join 172.17.17.110:6443 --token 5g5jo2.agl26wfzkujgjt3s --discovery-token-ca-cert-hash ha256:57795a664200425258ed0619af960fe476d1ae93f99182a3d710ce1185468d3f --apiserver-advertise-address=172.17.17.113
+```
+**Step 3: Deploy Calico network.**
+```
+kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://docs.projectcalico.org/v3.18/manifests/calico.yaml
+```
+
