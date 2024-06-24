@@ -1,7 +1,7 @@
 # Highly-Available-Kubernetes-Cluster
 ## Requirements: ##
 - Minimum 3 master nodes
-- Minimum two loadbalancers
+- Minimum 2 loadbalancers
 
 #### Step 1: Create 6 VMs in Proxmox. ####
 
