@@ -31,21 +31,14 @@ The above architecture refers a highly available Kubernetes cluster which doesn'
 
 ## VM Creation: ##
 
-#### Step 1: Create 6 VMs in Proxmox. ####
-
-<img src="https://github.com/animshamura/Highly-Available-Kubernetes-Cluster/blob/main/screenshots/pr1.png?raw=true">
-<img src="https://github.com/animshamura/Highly-Available-Kubernetes-Cluster/blob/main/screenshots/pr2.png?raw=true">
-<img src="https://github.com/animshamura/Highly-Available-Kubernetes-Cluster/blob/main/screenshots/pr3.png?raw=true">
-<img src="https://github.com/animshamura/Highly-Available-Kubernetes-Cluster/blob/main/screenshots/pr4.png?raw=true">
-
 <font color="blue">Create one VM and clone 5 VMs to get total of 6 VMs in Proxmox. Again, hostname and IP address of each VM has to be edited.<font>
 
-#### Step 2: Change hostname of the VMs in Proxmox. ####
+#### Step 1: Change hostname of the VMs in Proxmox. ####
 
 ```
 sudo hostnamectl set-hostname master1
 ```
-#### Step 3: Change IP addres of the VMs in Proxmox. ####
+#### Step 2: Change IP addres of the VMs in Proxmox. ####
 
 ```
 sudo vim /etc/netplan/00-installer-config.yaml
@@ -288,13 +281,13 @@ watch kubectl get nodes
 ```
 **Step 3: Execute below command in Loadbalancer-1.**
 ```
-ip a s
+ip a 
 ```
 This will show the virtual IP 172.17.17.116 is attached to Loadbalancer-1.
 
 **Step 3: Turn off the Loadbalancer-1 and execute below command in Loadbalancer-2.**
 ```
-ip a s
+ip a 
 ```
 Now, this will show the virtual IP 172.17.17.116 is attached to Loadbalancer-2. <br/>
 
