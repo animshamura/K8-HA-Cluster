@@ -188,7 +188,7 @@ EOF
 sudo sysctl --system
 }
 ```
-**Step 5: Install Containerd runtime, modify configuaration and restart service.**
+**Step 5: Install Containerd runtime, modify configuration and restart service.**
 
 ```
 {
