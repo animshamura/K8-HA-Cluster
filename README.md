@@ -86,7 +86,7 @@ network:
 **Step 1: Install HAProxy and Keepalived.**
 
 ```
-apt update && apt install -y keepalived haproxy
+sudo apt update && sudo apt install -y keepalived haproxy
 ```
 **Step 2: Configure Keepalived.**
 
@@ -141,8 +141,8 @@ EOF
 ```
 **Step 3: Enable and start Keepalived service.**
 ```
-systemctl enable --now keepalived
-systemctl start --now keepalived
+sudo systemctl enable --now keepalived
+sudo systemctl start --now keepalived
 ```
 **Step 4: Configure HAProxy.**
 ```
@@ -168,7 +168,7 @@ EOF
 ```
 **Step 5: Enable and restart HAProxy service.**
 ```
-systemctl enable haproxy && systemctl restart haproxy
+sudo systemctl enable haproxy && sudo systemctl restart haproxy
 ```
 ## Cluster Pre-requisites: ##
 **Step 1: Disable swap.**
@@ -180,21 +180,21 @@ sudo init 6
 ```
 **Step 2: Disable firewall.**
 ```
-systemctl disable --now ufw
+sudo systemctl disable --now ufw
 ```
-**Step 3: Enable and Load Kernel modules.**
+**Step 3: Enable and load kernel modules.**
 ```
 {
-cat >> /etc/modules-load.d/containerd.conf <<EOF
+cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 overlay
 br_netfilter
 EOF
 
-modprobe overlay
-modprobe br_netfilter
+sudo modprobe overlay
+sudo modprobe br_netfilter
 }
 ```
-**Step 4: Add Kernel settings.**
+**Step 4: Add kernel settings.**
 ```
 {
 cat >>/etc/sysctl.d/kubernetes.conf<<EOF
@@ -203,10 +203,11 @@ net.bridge.bridge-nf-call-iptables  = 1
 net.ipv4.ip_forward                 = 1
 EOF
 
-sysctl --system
+sudo sysctl --system
 }
 ```
 **Step 5: Install containerd runtime, modify configuaration and restart service.**
+
 ```
 {
 sudo apt-get update
@@ -220,26 +221,29 @@ sudo containerd config default | sudo tee /etc/containerd/config.toml
 sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
 cat /etc/containerd/config.toml
 ```
-```
 Restart containerd service.
 ```
 sudo systemctl restart containerd.service
 sudo systemctl status containerd
 ```
-**Step 6: Add apt repository for Kubernetes.**
+
+**Step 6: Install Kubernetes components.**
 ```
-{
-echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl
+sudo apt-get install -y apt-transport-https ca-certificates curl
+
+
 curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-}
+
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
-**Step 7: Install Kubernetes components.**
 ```
 {
   sudo apt update
   sudo apt install -y kubeadm kubelet kubectl
 }
-
+```
 ## Bootstrapping Clusters: ##
 **Step 1: Initialize Kubernetes cluster.**
 ```
