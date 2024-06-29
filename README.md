@@ -173,7 +173,10 @@ systemctl enable haproxy && systemctl restart haproxy
 ## Cluster Pre-requisites: ##
 **Step 1: Disable swap.**
 ```
-swapoff -a; sed -i '/swap/d' /etc/fstab
+sudo apt-get update
+sudo swapoff -a
+sudo vim /etc/fstab
+sudo init 6
 ```
 **Step 2: Disable firewall.**
 ```
@@ -203,16 +206,25 @@ EOF
 sysctl --system
 }
 ```
-**Step 5: Install containerd runtime.**
+**Step 5: Install containerd runtime, modify configuaration and restart service.**
 ```
 {
-  apt update
-  apt install -y containerd apt-transport-https
-  mkdir /etc/containerd
-  containerd config default > /etc/containerd/config.toml
-  systemctl restart containerd
-  systemctl enable containerd
+sudo apt-get update
+sudo apt-get install -y containerd
 }
+```
+Modify containerd configuration.
+```
+sudo mkdir -p /etc/containerd
+sudo containerd config default | sudo tee /etc/containerd/config.toml
+sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
+cat /etc/containerd/config.toml
+```
+```
+Restart containerd service.
+```
+sudo systemctl restart containerd.service
+sudo systemctl status containerd
 ```
 **Step 6: Add apt repository for Kubernetes.**
 ```
@@ -224,35 +236,42 @@ curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --
 **Step 7: Install Kubernetes components.**
 ```
 {
-  apt update
-  apt install -y kubeadm kubelet kubectl
+  sudo apt update
+  sudo apt install -y kubeadm kubelet kubectl
 }
-```
+
 ## Bootstrapping Clusters: ##
 **Step 1: Initialize Kubernetes cluster.**
 ```
 kubeadm init --control-plane-endpoint="172.17.17.116:6443" --upload-certs --apiserver-advertise-address=172.17.17.110 --pod-network-cidr=192.168.1.0/16
 ```
-**Step 2: Join master and worker nodes.** <br/> <br/>
+```
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+**Step 3: Deploy Calico network.**
+```
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/tigera-operator.yaml
+curl https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/custom-resources.yaml -O
+kubectl create -f custom-resources.yaml
+```
+**Step 3: Join master and worker nodes.** <br/> <br/>
 Executing print-join-command for getting the joining token.
 ```
 kubeadm token create --print-join-command
 ```
 For joining master-node-2 in the multicluster.
 ```
-kubeadm join 172.17.17.110:6443 --token 5g5jo2.agl26wfzkujgjt3s --discovery-token-ca-cert-hash ha256:57795a664200425258ed0619af960fe476d1ae93f99182a3d710ce1185468d3f --apiserver-advertise-address=172.17.17.111
+kubeadm join 172.17.17.116:6443 --token 6u1d8n.pxipslewcckpvql8 --discovery-token-ca-cert-hash sha256:9b1b55035c2671b63635f4dbcc218c499d09d6e3319992d954754832ed988fe2 --control-plane --certificate-key 8be7f614b62e0a0b9999e14966c572c68894fa995c9124f12e946777973227b9 --apiserver-advertise-address=172.17.17.111
 ```
 For joining master-node-3 in the multicluster.
 ```
-kubeadm join 172.17.17.110:6443 --token 5g5jo2.agl26wfzkujgjt3s --discovery-token-ca-cert-hash ha256:57795a664200425258ed0619af960fe476d1ae93f99182a3d710ce1185468d3f --apiserver-advertise-address=172.17.17.112
+kubeadm join 172.17.17.116:6443 --token 6u1d8n.pxipslewcckpvql8 --discovery-token-ca-cert-hash sha256:9b1b55035c2671b63635f4dbcc218c499d09d6e3319992d954754832ed988fe2 --control-plane --certificate-key 8be7f614b62e0a0b9999e14966c572c68894fa995c9124f12e946777973227b9 --apiserver-advertise-address=172.17.17.112
 ```
 For joining worker-node-1 in the multicluster.
 ```
-kubeadm join 172.17.17.110:6443 --token 5g5jo2.agl26wfzkujgjt3s --discovery-token-ca-cert-hash ha256:57795a664200425258ed0619af960fe476d1ae93f99182a3d710ce1185468d3f 
-```
-**Step 3: Deploy Calico network.**
-```
-kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://docs.projectcalico.org/v3.18/manifests/calico.yaml
+sudo kubeadm join 172.17.17.116:6443 --token m5mp8x.hiy0a3j086jzjxud --discovery-token-ca-cert-hash sha256:9b1b55035c2671b63635f4dbcc218c499d09d6e3319992d954754832ed988fe2 
 ```
 ## Check High Availability: ##
 **Step 1: Copy kubeconfig file to the host machine.**
