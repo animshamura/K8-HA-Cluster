@@ -48,6 +48,7 @@ network:
   version: 2
 ```
 <div align="center">
+  
 | VM | Host Name| IP Address | 
 |------|--------|------------|
 |Master Node-1 |master1| 172.17.17.110|
