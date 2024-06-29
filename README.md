@@ -7,7 +7,7 @@
 - Minimum 2 Loadbalancers
 - HAProxy
 - Keepalived
-- 
+
 ## Sections: ##
 - VM Creation
 - HAProxy and Keepalived Installation in Loadbalancer VMs
