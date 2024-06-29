@@ -7,6 +7,7 @@
 - Minimum 2 Loadbalancers
 - HAProxy
 - Keepalived
+- 
 ## Sections: ##
 - VM Creation
 - HAProxy and Keepalived Installation in Loadbalancer VMs
@@ -16,7 +17,7 @@
 
 ## VM Creation: ##
 
-<font color="blue">Create one VM and clone 5 VMs to get total of 6 VMs in Proxmox. Again, hostname and IP address of each VM has to be edited.<font>
+Create one VM and clone 5 VMs to get total of 6 VMs in Proxmox. Again, hostname and IP address of each VM has to be edited.
 
 #### Step 1: Change hostname of the VMs in Proxmox. ####
 
@@ -149,18 +150,18 @@ EOF
 sudo systemctl enable haproxy && sudo systemctl restart haproxy
 ```
 ## Cluster Pre-requisites: ##
-**Step 1: Disable swap.**
+**Step 1: Disable Swap.**
 ```
 sudo apt-get update
 sudo swapoff -a
 sudo vim /etc/fstab
 sudo init 6
 ```
-**Step 2: Disable firewall.**
+**Step 2: Disable Firewall.**
 ```
 sudo systemctl disable --now ufw
 ```
-**Step 3: Enable and load kernel modules.**
+**Step 3: Enable and load Kernel modules.**
 ```
 {
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
@@ -172,7 +173,7 @@ sudo modprobe overlay
 sudo modprobe br_netfilter
 }
 ```
-**Step 4: Add kernel settings.**
+**Step 4: Add Kernel settings.**
 ```
 {
 cat >>/etc/sysctl.d/kubernetes.conf<<EOF
@@ -184,7 +185,7 @@ EOF
 sudo sysctl --system
 }
 ```
-**Step 5: Install containerd runtime, modify configuaration and restart service.**
+**Step 5: Install Containerd runtime, modify configuaration and restart service.**
 
 ```
 {
@@ -256,7 +257,7 @@ For joining worker-node-1 in the multicluster.
 sudo kubeadm join 172.17.17.116:6443 --token m5mp8x.hiy0a3j086jzjxud --discovery-token-ca-cert-hash sha256:9b1b55035c2671b63635f4dbcc218c499d09d6e3319992d954754832ed988fe2 
 ```
 ## Check High Availability: ##
-**Step 1: Copy kubeconfig file to the host machine.**
+**Step 1: Copy Kubeconfig file to the host machine.**
 ```
 scp anim@172.17.18.200:/home/anim/.kube/config .
 ```
