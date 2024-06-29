@@ -17,7 +17,7 @@
 
 ## VM Creation: ##
 
-Create one VM and clone 5 VMs to get total of 6 VMs in Proxmox. Again, hostname and IP address of each VM has to be edited.
+Create one VM and get 5 clones to get total of 6 VMs in Proxmox. Further, change hostname and IP address of each cloned VM. 
 
 #### Step 1: Change hostname of the VMs in Proxmox. ####
 
@@ -70,9 +70,9 @@ sudo apt update && sudo apt install -y keepalived haproxy
 **Step 2: Configure Keepalived.**
 
 ```
-cat >> /etc/keepalived/check_apiserver.sh <<EOF
-#!/bin/sh
-
+sudo vim /etc/keepalived/check_apiserver.sh
+```
+```
 errorExit() {
   echo "*** $@" 1>&2
   exit 1
@@ -82,14 +82,16 @@ curl --silent --max-time 2 --insecure https://localhost:6443/ -o /dev/null || er
 if ip addr | grep -q 172.17.17.116; then
   curl --silent --max-time 2 --insecure https://172.17.17.116:6443/ -o /dev/null || errorExit "Error GET https://172.17.17.116:6443/"
 fi
-EOF
-
-chmod +x /etc/keepalived/check_apiserver.sh
+```
+```
+sudo chmod +x /etc/keepalived/check_apiserver.sh
 ```
 Create keepalived config /etc/keepalived/keepalived.conf.
 
 ```
-cat >> /etc/keepalived/keepalived.conf <<EOF
+sudo vim /etc/keepalived/keepalived.conf
+```
+```
 vrrp_script check_apiserver {
   script "/etc/keepalived/check_apiserver.sh"
   interval 3
@@ -116,7 +118,6 @@ vrrp_instance VI_1 {
         check_apiserver
     }
 }
-EOF
 ```
 **Step 3: Enable and start Keepalived service.**
 ```
@@ -125,8 +126,9 @@ sudo systemctl start --now keepalived
 ```
 **Step 4: Configure HAProxy.**
 ```
-cat >> /etc/haproxy/haproxy.cfg <<EOF
-
+sudo vim /etc/haproxy/haproxy.cfg
+```
+```
 frontend kubernetes-frontend
   bind *:6443
   mode tcp
@@ -142,8 +144,6 @@ backend kubernetes-backend
     server master1 172.17.17.110:6443 check fall 3 rise 2
     server master2 172.17.17.111:6443 check fall 3 rise 2
     server master3 172.17.17.112:6443 check fall 3 rise 2
-
-EOF
 ```
 **Step 5: Enable and restart HAProxy service.**
 ```
@@ -212,9 +212,7 @@ sudo apt-get update
 sudo apt-get install -y ca-certificates curl
 sudo apt-get install -y apt-transport-https ca-certificates curl
 
-
 curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-
 echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
 ```
