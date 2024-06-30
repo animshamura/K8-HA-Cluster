@@ -1,5 +1,9 @@
-## Table of contents : 
+## Table of Contents : 
 - [K8 Multicluster Architecture](#k8-multicluster-architecture)
+- [Requirements](#requirements)
+- [Configuration Stages](#configuration-stages)
+           - [VM Creation](#vm-creation)
+           - [HAProxy and Keepalived Installation in Loadbalancer VMs](#haproxy-and-keepalived-installation-in-loadbalancer-vms) 
 
 ## K8 Multicluster Architecture: ##
 <div align="justify">A highly available Kubernetes cluster architecture provides a robust foundation for deploying and managing cloud-native applications, meeting high availability requirements and enabling organizations to maintain operational efficiency and meet stringent SLAs.The below architecture refers a highly available Kubernetes cluster which doesn't fall in one point failure for loadbalancing.</div>
@@ -11,7 +15,7 @@
 - HAProxy
 - Keepalived
 
-## Sections: ##
+## Configuration Stages: ##
 - VM Creation
 - HAProxy and Keepalived Installation in Loadbalancer VMs
 - Cluster Pre-requisites
