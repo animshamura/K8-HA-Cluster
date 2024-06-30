@@ -253,7 +253,7 @@ kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1
 curl https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/custom-resources.yaml -O
 kubectl create -f custom-resources.yaml
 ```
-**Step 3: Join master and worker nodes.** <br/> <br/>
+**Step 3: Join master and worker nodes.** <br/> 
 ```
 kubeadm token create --print-join-command
 ```
