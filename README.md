@@ -152,7 +152,7 @@ backend kubernetes-backend
 ```
 sudo systemctl enable haproxy && sudo systemctl restart haproxy
 ```
-## Cluster Pre-requisites: ##
+## Cluster Pre-requisites in All Nodes: ##
 **Step 1: Disable Swap.**
 ```
 sudo apt-get update
