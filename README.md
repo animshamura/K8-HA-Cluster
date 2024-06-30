@@ -225,7 +225,7 @@ echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.
 }
 ```
 ## Bootstrapping Clusters: ##
-**Step 1: Initialize Kubernetes cluster.**
+**Step 1: Initialize Kubernetes cluster. (any one master node)**
 ```
 kubeadm init --control-plane-endpoint="172.17.17.116:6443" --upload-certs --apiserver-advertise-address=172.17.17.110 --pod-network-cidr=192.168.1.0/16
 ```
@@ -234,7 +234,7 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
-**Step 2: Deploy Calico network.**
+**Step 2: Deploy Calico network.(master node selected in step 1)**
 ```
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/tigera-operator.yaml
 curl https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/custom-resources.yaml -O
