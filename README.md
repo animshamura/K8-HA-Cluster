@@ -1,8 +1,11 @@
-## K8 Multi Cluster Architecture: ##
+## Table of contents : 
+- 1. [K8 Multicluster Architecture](#k8-multicluster-architecture)
+
+## 1. K8 Multicluster Architecture: ##
 <div align="justify">A highly available Kubernetes cluster architecture provides a robust foundation for deploying and managing cloud-native applications, meeting high availability requirements and enabling organizations to maintain operational efficiency and meet stringent SLAs.The below architecture refers a highly available Kubernetes cluster which doesn't fall in one point failure for loadbalancing.</div>
 <div align="center"><img src="https://github.com/animshamura/Highly-Available-Kubernetes-Cluster/blob/main/screenshots/ha-kube-cluster.drawio.png?raw=true"></div>
 
-## Requirements: ##
+## 2. Requirements: ##
 - Minimum 3 Master Nodes
 - Minimum 2 Loadbalancers
 - HAProxy
