@@ -34,7 +34,7 @@ Create one VM and get 5 clones to get total of 6 VMs in Proxmox. Further, change
 ```
 sudo hostnamectl set-hostname master1
 ```
-#### Step 2: Change IP addres of the VMs in Proxmox. ####
+#### Step 2: Change IP address of the VMs in Proxmox. ####
 
 ```
 sudo vim /etc/netplan/00-installer-config.yaml
@@ -158,6 +158,8 @@ backend kubernetes-backend
     server master2 172.17.17.111:6443 check fall 3 rise 2
     server master3 172.17.17.112:6443 check fall 3 rise 2
 ```
+- Under 'balance roundrobin' section, mention the hostnames and IPs of all the master nodes
+  
 **Step 5: Enable and restart HAProxy service.**
 ```
 sudo systemctl enable haproxy && sudo systemctl restart haproxy
