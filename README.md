@@ -1,5 +1,5 @@
 ## Table of contents : 
-- 1. [K8 Multicluster Architecture](#k8-multicluster-architecture)
+- [K8 Multicluster Architecture](#k8-multicluster-architecture)
 
 ## 1. K8 Multicluster Architecture: ##
 <div align="justify">A highly available Kubernetes cluster architecture provides a robust foundation for deploying and managing cloud-native applications, meeting high availability requirements and enabling organizations to maintain operational efficiency and meet stringent SLAs.The below architecture refers a highly available Kubernetes cluster which doesn't fall in one point failure for loadbalancing.</div>
