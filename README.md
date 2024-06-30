@@ -3,7 +3,10 @@
 - [Requirements](#requirements)
 - [Configuration Stages](#configuration-stages)
 - [VM Creation](#vm-creation)
-- [HAProxy and Keepalived Installation in Loadbalancer VMs](#haproxy-and-keepalived-installation-in-loadbalancer-vms) 
+- [HAProxy and Keepalived Installation in Loadbalancer VMs](#haproxy-and-keepalived-installation-in-loadbalancer-vms)
+- [Cluster Pre-requisites in All Nodes](#cluster-pre-requisites-in-all-nodes)
+- [Bootstrapping Clusters](#bootstrapping-clusters)
+- [Check High Availability](#check-high-availability)
 
 ## K8 Multicluster Architecture: ##
 <div align="justify">A highly available Kubernetes cluster architecture provides a robust foundation for deploying and managing cloud-native applications, meeting high availability requirements and enabling organizations to maintain operational efficiency and meet stringent SLAs.The below architecture refers a highly available Kubernetes cluster which doesn't fall in one point failure for loadbalancing.</div>
@@ -18,7 +21,7 @@
 ## Configuration Stages: ##
 - VM Creation
 - HAProxy and Keepalived Installation in Loadbalancer VMs
-- Cluster Pre-requisites
+- Cluster Pre-requisites in All Nodes
 - Bootstrapping Clusters
 - Check High Availability
 
