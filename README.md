@@ -247,29 +247,29 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
-**Step 2: Deploy Calico network.(master node selected in step 1)**
+**Step 2: Deploy Calico network. (master node selected in step 1)**
 ```
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/tigera-operator.yaml
 curl https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/custom-resources.yaml -O
 kubectl create -f custom-resources.yaml
 ```
 **Step 3: Join master and worker nodes.** <br/> <br/>
-Executing print-join-command for getting the joining token.
 ```
 kubeadm token create --print-join-command
 ```
-For joining master-node-2 in the multicluster.
+- Executing print-join-command for getting the joining token.
 ```
 kubeadm join 172.17.17.116:6443 --token 6u1d8n.pxipslewcckpvql8 --discovery-token-ca-cert-hash sha256:9b1b55035c2671b63635f4dbcc218c499d09d6e3319992d954754832ed988fe2 --control-plane --certificate-key 8be7f614b62e0a0b9999e14966c572c68894fa995c9124f12e946777973227b9 --apiserver-advertise-address=172.17.17.111
 ```
-For joining master-node-3 in the multicluster.
+- For joining master-node-2 in the multicluster
 ```
 kubeadm join 172.17.17.116:6443 --token 6u1d8n.pxipslewcckpvql8 --discovery-token-ca-cert-hash sha256:9b1b55035c2671b63635f4dbcc218c499d09d6e3319992d954754832ed988fe2 --control-plane --certificate-key 8be7f614b62e0a0b9999e14966c572c68894fa995c9124f12e946777973227b9 --apiserver-advertise-address=172.17.17.112
 ```
-For joining worker-node-1 in the multicluster.
+- For joining master-node-2 in the multicluster
 ```
 sudo kubeadm join 172.17.17.116:6443 --token m5mp8x.hiy0a3j086jzjxud --discovery-token-ca-cert-hash sha256:9b1b55035c2671b63635f4dbcc218c499d09d6e3319992d954754832ed988fe2 
 ```
+- For joining worker-node-1 in the multicluster
 ## Check High Availability: ##
 **Step 1: Copy Kubeconfig file to the host machine.**
 ```
