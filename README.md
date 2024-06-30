@@ -96,6 +96,7 @@ if ip addr | grep -q 172.17.17.116; then
   curl --silent --max-time 2 --insecure https://172.17.17.116:6443/ -o /dev/null || errorExit "Error GET https://172.17.17.116:6443/"
 fi
 ```
+- Mention the virtual IP to check the availability. 
 ```
 sudo chmod +x /etc/keepalived/check_apiserver.sh
 ```
@@ -158,7 +159,7 @@ backend kubernetes-backend
     server master2 172.17.17.111:6443 check fall 3 rise 2
     server master3 172.17.17.112:6443 check fall 3 rise 2
 ```
-- Under 'balance roundrobin' section, mention the hostnames and IPs of all the master nodes
+- Under 'balance roundrobin' section, mention the hostnames and IPs of all the master nodes.
   
 **Step 5: Enable and restart HAProxy service.**
 ```
