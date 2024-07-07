@@ -274,8 +274,10 @@ sudo kubeadm join 172.17.17.116:6443 --token m5mp8x.hiy0a3j086jzjxud --discovery
 ## Check High Availability: ##
 **Step 1: Copy Kubeconfig file to the host machine.**
 ```
-scp anim@172.17.18.200:/home/anim/.kube/config .
+sudo mkdir /.kube
+sudo vim /.kube/config
 ```
+Paste the copied config info into the file.
 **Step 2: Watch nodes.**
 ```
 watch kubectl get nodes
