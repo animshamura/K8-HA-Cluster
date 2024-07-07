@@ -279,7 +279,6 @@ sudo vim /.kube/config
 ```
 Paste the copied config info into the file.
 <br/>
-<br/>
 
 **Step 2: Watch nodes.**
 ```
