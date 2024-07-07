@@ -278,6 +278,7 @@ sudo mkdir /.kube
 sudo vim /.kube/config
 ```
 Paste the copied config info into the file.
+<br/>
 **Step 2: Watch nodes.**
 ```
 watch kubectl get nodes
