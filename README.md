@@ -27,36 +27,7 @@
 - Check High Availability
 
 ## VM Creation: ##
-
-Create one VM and get 5 clones to get total of 6 VMs in Proxmox. Further, change hostname and IP address of each cloned VM. 
-
-#### Step 1: Change hostname of the VMs in Proxmox. ####
-
-```
-sudo hostnamectl set-hostname master1
-```
-#### Step 2: Change IP address of the VMs in Proxmox. ####
-
-```
-sudo vim /etc/netplan/00-installer-config.yaml
-```
-Edit "00-installer-config.yaml" file according to the desired IP.
-
-```
-# This is the network config written by 'subiquity'
-network:
-  ethernets:
-    ens18:
-      addresses:
-      - 172.17.17.112/24
-      nameservers:
-        addresses:
-        - 8.8.8.8
-        search: []
-      routes:
-      - to: default
-        via: 172.17.17.1
-  version: 2
+Create 6 VMs. 
 ```
 <div align="center">
   
@@ -296,3 +267,5 @@ ip a
 ```
 Now, this will show the virtual IP 172.17.17.116 is attached to Loadbalancer-2. <br/>
 
+### Refference
+ <a href="https://github.com/justmeandopensource/kubernetes/tree/master/kubeadm-ha-keepalived-haproxy/external-keepalived-haproxy">https://github.com/justmeandopensource/kubernetes/tree/master/kubeadm-ha-keepalived-haproxy/external-keepalived-haproxy</a> 
