@@ -268,3 +268,4 @@ Now, this will show the virtual IP 172.17.17.116 is attached to Loadbalancer-2. 
 
 ### Refference
  <a href="https://github.com/justmeandopensource/kubernetes/tree/master/kubeadm-ha-keepalived-haproxy/external-keepalived-haproxy">https://github.com/justmeandopensource/kubernetes/tree/master/kubeadm-ha-keepalived-haproxy/external-keepalived-haproxy</a> 
+ <a href="https://www.youtube.com/watch?v=SueeqeioyKY">https://www.youtube.com/watch?v=SueeqeioyKY</a>
