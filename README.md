@@ -228,19 +228,19 @@ kubectl create -f custom-resources.yaml
 ```
 kubeadm token create --print-join-command
 ```
-- Executing print-join-command for getting the joining token.
+Executing print-join-command for getting the joining token.
 ```
 kubeadm join 172.17.17.116:6443 --token 6u1d8n.pxipslewcckpvql8 --discovery-token-ca-cert-hash sha256:9b1b55035c2671b63635f4dbcc218c499d09d6e3319992d954754832ed988fe2 --control-plane --certificate-key 8be7f614b62e0a0b9999e14966c572c68894fa995c9124f12e946777973227b9 --apiserver-advertise-address=172.17.17.111
 ```
-- For joining master-node-2 in the multicluster
+For joining master-node-2 in the multicluster
 ```
 kubeadm join 172.17.17.116:6443 --token 6u1d8n.pxipslewcckpvql8 --discovery-token-ca-cert-hash sha256:9b1b55035c2671b63635f4dbcc218c499d09d6e3319992d954754832ed988fe2 --control-plane --certificate-key 8be7f614b62e0a0b9999e14966c572c68894fa995c9124f12e946777973227b9 --apiserver-advertise-address=172.17.17.112
 ```
-- For joining master-node-2 in the multicluster
+For joining master-node-2 in the multicluster
 ```
 sudo kubeadm join 172.17.17.116:6443 --token m5mp8x.hiy0a3j086jzjxud --discovery-token-ca-cert-hash sha256:9b1b55035c2671b63635f4dbcc218c499d09d6e3319992d954754832ed988fe2 
 ```
-- For joining worker-node-1 in the multicluster
+For joining worker-node-1 in the multicluster
 ## Check High Availability: ##
 **Step 1: Copy Kubeconfig file to the host machine.**
 ```
@@ -266,6 +266,6 @@ ip a
 ```
 Now, this will show the virtual IP 172.17.17.116 is attached to Loadbalancer-2. <br/>
 
-### Refferences :
+## Refferences :
 1. <a href="https://github.com/justmeandopensource/kubernetes/tree/master/kubeadm-ha-keepalived-haproxy/external-keepalived-haproxy">https://github.com/justmeandopensource/kubernetes/tree/master/kubeadm-ha-keepalived-haproxy/external-keepalived-haproxy</a> 
 2. <a href="https://www.youtube.com/watch?v=SueeqeioyKY">https://www.youtube.com/watch?v=SueeqeioyKY</a>
