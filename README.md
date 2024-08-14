@@ -28,7 +28,6 @@
 
 ## VM Creation: ##
 Create 6 VMs. 
-```
 <div align="center">
   
 | VM | Host Name| IP Address | 
